@@ -80,7 +80,7 @@ function Login() {
 //     {pokaz_formularz_logowania && (
 //       <>
 //         <Formularz></Formularz>
-//         <Login></Login>
+//         <Login></Login >
 //       </>
 //     )}
 

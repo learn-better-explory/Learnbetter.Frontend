@@ -2,7 +2,7 @@ import { StrictMode, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 
-function Menu({ przycisk_log_in }) {
+function Menu({ buttonLogIn }) {
   return (
     <>
       <div id="menu">
@@ -29,7 +29,7 @@ function Menu({ przycisk_log_in }) {
             <a href="new_window.html">new_new_window</a>
           </li>
 
-          <button id="login_button" onClick={przycisk_log_in}>
+          <button id="loginButton" onClick={buttonLogIn}>
             Log in
           </button>
         </ul>
@@ -37,10 +37,10 @@ function Menu({ przycisk_log_in }) {
     </>
   );
 }
-function Formularz() {
+function Registration() {
   return (
     <>
-      <div id="formularz">
+      <div id="registration">
         <form action="" method="post">
           <label for="email">email</label>
           <input name="email" type="text" />
@@ -69,15 +69,15 @@ function Login() {
   );
 }
 
-// let [pokaz_formularz_logowania, ustaw_pokaz_formularz_logowania] =
+// let [showFormToLogIn, setShowFormToLogIn] =
 //   useState(true);
 
-// let pokaz_formularz_logowania = false;
+// let showFormToLogIn = false;
 // createRoot(document.getElementById("root")).render(
 //   <>
 //     <Menu></Menu>
 
-//     {pokaz_formularz_logowania && (
+//     {showFormToLogIn && (
 //       <>
 //         <Formularz></Formularz>
 //         <Login></Login >
@@ -91,20 +91,19 @@ function Login() {
 
 // );
 function App() {
-  const [pokaz_formularz_logowania, ustaw_pokaz_formularz_logowania] =
-    useState(true);
-  // let pokaz_formularz_logowania = false;
-  function przycisk_log_in() {
-    ustaw_pokaz_formularz_logowania(!pokaz_formularz_logowania);
+  const [showFormToLogIn, setShowFormToLogIn] = useState(true);
+  // let showFormToLogIn = false;
+  function buttonLogIn() {
+    setShowFormToLogIn(!showFormToLogIn);
   }
   return (
     <>
-      <Menu przycisk_log_in={przycisk_log_in}></Menu>
+      <Menu buttonLogIn={buttonLogIn}></Menu>
 
-      {pokaz_formularz_logowania && (
+      {showFormToLogIn && (
         <>
-          <div id="pola_formularza">
-            <Formularz></Formularz>
+          <div id="formField">
+            <Registration></Registration>
             <Login></Login>
           </div>
         </>

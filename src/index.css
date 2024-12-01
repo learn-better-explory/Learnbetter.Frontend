@@ -1,5 +1,5 @@
 :root {
-  --czcionka: cursive;
+  --font_style: cursive;
 }
 
 #menu {
@@ -18,7 +18,7 @@
   color: aliceblue;
   text-decoration: none;
   /* font-family:Arial, Helvetica, sans-serif; */
-  font-family: var(--czcionka);
+  font-family: var(--font_style);
   margin: 0;
 }
 
@@ -44,8 +44,8 @@
   background-color: rgb(63, 66, 64);
 } */
 
-#login_button {
-  font-family: var(--czcionka);
+#loginButton {
+  font-family: var(--font_style);
   font-weight: bold;
   right: 0;
   position: relative;
@@ -78,7 +78,7 @@
   background-color: rgb(124, 110, 100);
 } */
 
-#formularz {
+#registration {
   /* display: flex; */
   display: inline-flex;
   justify-content: center;
@@ -117,14 +117,14 @@ label {
   font-size: 30px;
   color: white;
   text-align: center;
-  font-family: var(--czcionka);
+  font-family: var(--font_style);
 }
 input {
   border-radius: 10px;
   border: 2px solid black;
   padding: 10px;
 }
-#pola_formularza {
+#formField {
   position: absolute;
   top: 70px;
   width: 100%;

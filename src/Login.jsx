@@ -3,18 +3,20 @@ import { Link } from "react-router-dom";
 export default function Login() {
   return (
     <>
-      <div id="login">
+      <div className="container">
         <form action="" method="post">
-          <label for="nick">nick</label>
+          <label htmlFor="nick">login</label>
+          <br></br>
           <input name="nick" type="text" />
-          <label for="hasło">hasło</label>
-          <input name="hasło" type="text" />
-          <button type="submit">Zaloguj</button>
+          <br></br>
+          <label htmlFor="hasło">hasło</label>
+          <br></br>
+          <input name="hasło" type="password" />
+          <br></br>
+          <input type="submit" value='Zaloguj się'></input>
 
-          <label for="createAccount">Nie masz konta?</label>
-          <li>
-            <Link to="/registration">Stwórz konto</Link>
-          </li>
+          <br></br>
+          <Link to="/registration">Stwórz konto</Link>
         </form>
       </div>
     </>

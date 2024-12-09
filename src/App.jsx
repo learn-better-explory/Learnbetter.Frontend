@@ -1,33 +1,39 @@
 import { useState } from "react";
-import { Menu, Login, Registration } from "./form";
+import { Link } from "react-router-dom";
+// import { Login, Registration } from "./form";
+import { AboutUs } from "./aboutUs";
 
 export default function App() {
-  const [showFormToLogIn, setShowFormToLogIn] = useState(false);
+  const [showFormToLogIn, setShowFormToLogIn] = useState(true);
   const [showCreateAccount, setshowCreateAccount] = useState(false);
-
+  // const [activeTab, setActiveTab] = useState(tabs[0].id);
   // let showFormToLogIn = false;
   function buttonLogIn() {
     setShowFormToLogIn(!showFormToLogIn);
-    setshowCreateAccount(false);
   }
   function functionShowCreateAccount() {
     setshowCreateAccount(!showCreateAccount);
   }
 
   return (
-    <>
-      <Menu buttonLogIn={buttonLogIn}></Menu>
+    <div>
+      <li>
+        <Link to="/login">Strona Główna</Link>
+      </li>
 
-      {showFormToLogIn && (
-        <div id="formField">
+      {/* <>
+        {showFormToLogIn && (
           <Login functionShowCreateAccount={functionShowCreateAccount}></Login>
-        </div>
-      )}
+        )}
+      </>
       {showCreateAccount && (
-        <div id="formField">
-          <Registration></Registration>
-        </div>
-      )}
-    </>
+        <>
+          <Registration
+            functionShowCreateAccount={functionShowCreateAccount}
+          ></Registration>
+        </>
+      )} */}
+      <AboutUs></AboutUs>
+    </div>
   );
 }

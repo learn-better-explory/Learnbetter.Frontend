@@ -1,20 +1,22 @@
+import { Link } from "react-router-dom";
 
+export default function Login() {
+  return (
+    <>
+      <div id="login">
+        <form action="" method="post">
+          <label for="nick">nick</label>
+          <input name="nick" type="text" />
+          <label for="hasło">hasło</label>
+          <input name="hasło" type="text" />
+          <button type="submit">Zaloguj</button>
 
-function Login() {
-    return (
-      <>
-        <div id="login">
-          <form action="" method="post">
-            <label for="login">login</label>
-            <input name="login" type="text" />
-            <br/>
-            <label for="hasło">hasło</label>
-            <input name="hasło" type="text" />
-            <br></br>
-            <input type="submit"></input>
-          </form>
-        </div>
-      </>
-    );
-  }
-export default Login;
+          <label for="createAccount">Nie masz konta?</label>
+          <li>
+            <Link to="/registration">Stwórz konto</Link>
+          </li>
+        </form>
+      </div>
+    </>
+  );
+}

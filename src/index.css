@@ -1,8 +1,16 @@
 :root {
-  --font_style: cursive;
+  --fontStyle: cursive;
+
+  --darkModeBackgroundColor: rgb(34, 32, 32);
+  --darkModeBackgroundColorElements: rgb(70, 69, 69);
+  --darkModeBackgroundColorText: white;
+
+  --lightModeBackgroundColor: white;
+  --lightModeBackgroundColorElements: rgb(224, 224, 224);
+  --lightModeBackgroundColorText: black;
 }
 
-#menu {
+/* #menu {
   background-color: rgb(53, 50, 50);
 
   position: absolute;
@@ -16,9 +24,9 @@
 
 #menu a {
   color: aliceblue;
-  text-decoration: none;
-  /* font-family:Arial, Helvetica, sans-serif; */
-  font-family: var(--font_style);
+  text-decoration: none; */
+/* font-family:Arial, Helvetica, sans-serif; */
+/* font-family: var(--fonrS );
   margin: 0;
 }
 
@@ -33,7 +41,7 @@
 
   float: left;
   margin-left: 15px;
-}
+} */
 /* 
 #main {
   left: 0;
@@ -44,8 +52,8 @@
   background-color: rgb(63, 66, 64);
 } */
 
-#loginButton {
-  font-family: var(--font_style);
+/* #loginButton {
+  font-family: var(--fontStyle);
   font-weight: bold;
   right: 0;
   position: relative;
@@ -55,7 +63,7 @@
   border-radius: 5px;
   padding: 3px;
   background-color: rgb(187, 241, 241);
-}
+} */
 /* #formularz {
   position: absolute;
   top: 50%;
@@ -77,6 +85,9 @@
   padding: 20px;
   background-color: rgb(124, 110, 100);
 } */
+body {
+  background-color: var(--lightModeBackgroundColor);
+}
 
 #registration {
   /* display: flex; */
@@ -96,7 +107,7 @@
 
 #login {
   width: 30%;
-
+  margin-left: 25%;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -106,25 +117,25 @@
   border: 2px solid black;
   border-radius: 20px;
   padding: 20px;
-  background-color: rgb(124, 110, 100);
+  background-color: var(--lightModeBackgroundColorElements);
 }
 
 label {
   display: block;
   position: relative;
   text-decoration: none;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 30px;
-  color: white;
+  color: var(--lightModeBackgroundColorText);
   text-align: center;
-  font-family: var(--font_style);
+  font-family: var(--fontStyle);
 }
 input {
   border-radius: 10px;
   border: 2px solid black;
   padding: 10px;
 }
-#formField {
+/* #formField {
   position: absolute;
   top: 70px;
   width: 100%;
@@ -134,4 +145,4 @@ input {
   border-radius: 20px;
   background-color: rgb(102, 114, 106);
   padding: 20px;
-}
+} */

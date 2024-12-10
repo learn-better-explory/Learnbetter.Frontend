@@ -2,31 +2,32 @@ export default function Registration() {
 
   const sendDataToAPI = async () => {
     const data = {
-      name: 'John Doe',
+      username: 'Testd',
       password: '123',
-      email: 'johndoe@example.com',
+      email: 'johndodeee@example.com',
     };
 
-    console.log("1")
+    console.log(JSON.stringify(data));
     try {
       const response = await fetch('http://localhost:8080/api/v1/register', {
-        mode: 'no-cors',  
         method: 'POST',
-        headers: {
+        headers:{
           'Content-Type': 'application/json',
+          'Accept': '*/*'
         },
         body: JSON.stringify(data),
       });
-      console.log("1")
 
       if (!response.ok) {
+        console.log(response)
         throw new Error('Network response was not ok');
       }
 
       const result = await response.json();
-      //setResponseMessage(`Success: ${result.message}`);
+      console.log("Success " + result.message)
     } catch (error) {
       console.log(error)
+      console.log(error.message)
       //setResponseMessage(`Error: ${error.message}`);
     }
   };

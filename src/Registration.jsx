@@ -2,9 +2,9 @@ export default function Registration() {
 
   const sendDataToAPI = async () => {
     const data = {
-      username: 'Testd',
-      password: '123',
-      email: 'johndodeee@example.com',
+      username: getUsersData('username'),
+      password: getUsersData('password'),
+      email: getUsersData('email'),
     };
 
     console.log(JSON.stringify(data));
@@ -19,18 +19,24 @@ export default function Registration() {
       });
 
       if (!response.ok) {
-        console.log(response)
         throw new Error('Network response was not ok');
       }
 
       const result = await response.json();
-      console.log("Success " + result.message)
+      window.location.href = 'http://localhost:5173/'
     } catch (error) {
-      console.log(error)
-      console.log(error.message)
-      //setResponseMessage(`Error: ${error.message}`);
+
     }
   };
+
+  function getUsersData(elementName){
+    return document.getElementsByName(elementName)[0].value
+  }
+
+  function handleSendButton(){
+    sendDataToAPI();
+    
+  }
 
   return (
     <>
@@ -40,15 +46,15 @@ export default function Registration() {
           <br></br>
           <input name="email" type="text" />
           <br></br>
-          <label htmlFor="imie">imie</label>
+          <label htmlFor="username">username</label>
           <br></br>
-          <input name="imie" type="text" />
+          <input name="username" type="text" />
           <br></br>
-          <label htmlFor="nazwisko">nazwisko</label>
+          <label htmlFor="password">Hasło</label>
           <br></br>
-          <input name="nazwisko" type="text" />
+          <input name="password" type="password" />
         </form>
-        <button type='button' onClick={() => sendDataToAPI()}>Wyślij</button>
+        <button type='button' onClick={() => handleSendButton()}>Wyślij</button>        
       </div>
     </>
   );

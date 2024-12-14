@@ -1,36 +1,66 @@
-export default async function GetTables() {
-  const id = localStorage.getItem("id");
-  const token = localStorage.getItem("token");
+import React, { useEffect, useState } from "react";
+import { useGlobalState } from "./context";
 
-  // Sprawdzenie, czy dane istnieją
-  if (!id || !token) {
-    console.error("ID lub token nie jest dostępny w localStorage.");
-    return null;
-  }
+const GetTables = () => {
+  const { token, id } = useGlobalState(); // Pobieramy token i ID z globalnego stanu
+  const [tables, setTables] = useState([]); // Stan do przechowywania tabel
+  const [error, setError] = useState(null); // Stan do przechowywania błędów
 
-  try {
-    const response = await fetch(`http://localhost:8080/api/v1/${id}/tables`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "*/*",
-        Authorization: `Bearer ${token}`, // Dodaj token do nagłówka
-      },
-    });
-
-    if (!response.ok) {
-      console.error(`Błąd: ${response.status} - ${response.statusText}`);
-      if (response.status === 403) {
-        console.error("Brak dostępu: nieprawidłowy token lub brak uprawnień.");
+  useEffect(() => {
+    const fetchTables = async () => {
+      if (!token || !id) {
+        setError("Brak tokena lub ID. Nie można pobrać tabel.");
+        return;
       }
-      return null; // Zwróć null w przypadku błędu
-    }
 
-    const result = await response.json();
-    console.log(result); // Debug: wyświetlenie wyników
-    return result; // Zwracamy dane z serwera
-  } catch (error) {
-    console.error("Wystąpił błąd podczas pobierania danych:", error);
-    return null;
+      try {
+        const response = await fetch(
+          `http://localhost:8080/api/v1/${id}/tables`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "*/*",
+              Authorization: `Bearer ${token}`, // Dodajemy token do nagłówków
+            },
+          }
+        );
+
+        if (!response.ok) {
+          if (response.status === 403) {
+            setError("Brak dostępu: nieprawidłowy token lub brak uprawnień.");
+          } else {
+            setError(
+              `Błąd serwera: ${response.status} - ${response.statusText}`
+            );
+          }
+          return;
+        }
+
+        const result = await response.json();
+        setTables(result); // Zapisujemy pobrane tabele w stanie
+      } catch (error) {
+        setError(`Wystąpił błąd podczas pobierania danych: ${error.message}`);
+      }
+    };
+
+    fetchTables();
+  }, [token, id]); // Uruchamiamy efekt, gdy token lub ID się zmienią
+
+  if (error) {
+    return <div>Błąd: {error}</div>; // Wyświetlamy komunikat o błędzie, jeśli wystąpi
   }
-}
+
+  return (
+    <div>
+      <h1>Tabele użytkownika:</h1>
+      <ul>
+        {tables.map((table) => (
+          <li key={table.id}>{table.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default GetTables;

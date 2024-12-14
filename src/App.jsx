@@ -4,6 +4,7 @@ import Login from "./Login";
 import Header from "./Header";
 import Registration from "./Registration";
 import LogContextData from "./ShowContext";
+import GetTables from "./tables";
 // import { LoginData } from ".context";
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/" element={<Login />}></Route>
           <Route path="/registration" element={<Registration />}></Route>
           <Route path="/showContext" element={<LogContextData />}></Route>
+          <Route path="/GetTables" element={<GetTables />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

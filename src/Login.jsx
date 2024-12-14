@@ -12,26 +12,30 @@ export default function Login() {
       headers: {
         "Content-Type": "application/json",
         Accept: "*/*",
+       // Authorization: 'Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ0ZXN0MiIsImlhdCI6MTczNDIwNDE1NX0.3g09QeoyqwrPIyb_xizf8l4_cqYiRckmNw_MzL4mqdxepx5wPbjWcY0DWzjKAdlC'
       },
       body: JSON.stringify(data),
     });
+    
+    const result = await response.json();
 
     if (!response.ok) {
       console.log(response);
       if (response.status == "403") {
         console.log("lepiej nie mówić");
       }
+      console.log(result)
       return;
     }
-
-    const result = await response.json();
+    
+    // if logged succeed
     console.log(result);
 
     // Ustawiamy token i ID w localStorage
     localStorage.setItem("token", result.token);
     localStorage.setItem("id", result.id);
 
-    // window.location.href = 'http://localhost:5173/'
+     window.location.href = 'http://localhost:5173/ShowContext'
   };
 
   function getUsersData(elementName) {

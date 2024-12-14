@@ -1,5 +1,9 @@
 export default function Registration() {
 
+
+// login: test2
+// password: test
+
   const sendDataToAPI = async () => {
     const data = {
       username: getUsersData('username'),
@@ -17,15 +21,16 @@ export default function Registration() {
         },
         body: JSON.stringify(data),
       });
+      const result = await response.json();
 
       if (!response.ok) {
+        console.log(result)
         throw new Error('Network response was not ok');
       }
 
-      const result = await response.json();
       window.location.href = 'http://localhost:5173/'
     } catch (error) {
-
+      //console.log(result)
     }
   };
 

@@ -1,0 +1,26 @@
+#container{
+    width: 400px;
+    height: 100vh;
+    color: black;
+    margin-top: 100px;
+    margin-left: 30%;
+}
+
+.clickElement{
+    background-color: #F2F2F2 ;
+    border: 5px black solid;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 30px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.td{
+    width: 200px;
+    height: 100px;
+    padding: 10px;
+    min-width: 200px;
+}

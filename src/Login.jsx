@@ -1,38 +1,41 @@
 import { Link } from "react-router-dom";
 
 export default function Login() {
-
   const handleLoginButton = async () => {
     const data = {
-      username: getUsersData('username'),
-      password: getUsersData('password')
+      username: getUsersData("username"),
+      password: getUsersData("password"),
     };
-    try {
-      const response = await fetch('http://localhost:8080/api/v1/login', {
-        method: 'POST',
-        headers:{
-          'Content-Type': 'application/json',
-          'Accept': '*/*'
-        },
-        body: JSON.stringify(data),
-      });
 
-      
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+    const response = await fetch("http://localhost:8080/api/v1/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "*/*",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      console.log(response);
+      if (response.status == "403") {
+        console.log("lepiej nie mówić");
       }
-      
-      const result = await response.json();
-      console.log(result)
-      console.log("123")
-      window.location.href = 'http://localhost:5173/'
-    } catch (error) {
-
+      return;
     }
-  }
 
-  function getUsersData(elementName){
-    return document.getElementsByName(elementName)[0].value
+    const result = await response.json();
+    console.log(result);
+
+    // Ustawiamy token i ID w localStorage
+    localStorage.setItem("token", result.token);
+    localStorage.setItem("id", result.id);
+
+    // window.location.href = 'http://localhost:5173/'
+  };
+
+  function getUsersData(elementName) {
+    return document.getElementsByName(elementName)[0].value;
   }
 
   return (
@@ -47,7 +50,14 @@ export default function Login() {
           <br></br>
           <input name="password" type="password" />
           <br></br>
-          <button type="button" onClick={() => {handleLoginButton()}}>Zaloguj się</button>
+          <button
+            type="button"
+            onClick={() => {
+              handleLoginButton();
+            }}
+          >
+            Zaloguj się
+          </button>
 
           <br></br>
           <Link to="/registration">Stwórz konto</Link>

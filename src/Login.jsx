@@ -1,6 +1,17 @@
+import { useState } from "react";
+import { useGlobalState } from "./context";
 import { Link } from "react-router-dom";
 
 export default function Login() {
+
+  let [errorMessage, setMessage] = useState();
+  const { token } =  useGlobalState();
+  console.log(token);
+
+  if(token != "" && token != "null" && token != null){
+     window.location.href = 'http://localhost:5173/ShowContext';
+  }
+
   const handleLoginButton = async () => {
     const data = {
       username: getUsersData("username"),
@@ -11,8 +22,7 @@ export default function Login() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "*/*",
-       // Authorization: 'Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ0ZXN0MiIsImlhdCI6MTczNDIwNDE1NX0.3g09QeoyqwrPIyb_xizf8l4_cqYiRckmNw_MzL4mqdxepx5wPbjWcY0DWzjKAdlC'
+        Accept: "*/*"
       },
       body: JSON.stringify(data),
     });
@@ -20,9 +30,16 @@ export default function Login() {
     const result = await response.json();
 
     if (!response.ok) {
+      
+      localStorage.removeItem("token");
+      localStorage.removeItem("id");
+      
       console.log(response);
       if (response.status == "403") {
-        console.log("lepiej nie mówić");
+        setMessage("Złe hasło");
+      }
+      if(response.status == "400"){
+        setMessage("Zły nick");
       }
       console.log(result)
       return;
@@ -32,8 +49,10 @@ export default function Login() {
     console.log(result);
 
     // Ustawiamy token i ID w localStorage
-    localStorage.setItem("token", result.token);
-    localStorage.setItem("id", result.id);
+    if(response.ok){
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("id", result.id);
+    }
 
      window.location.href = 'http://localhost:5173/ShowContext'
   };
@@ -45,16 +64,15 @@ export default function Login() {
   return (
     <>
       <div className="container">
-        <form action="" method="post">
-          <label htmlFor="username">login</label>
-          <br></br>
+          <p className="header-text">Logowanie</p>
+          <form action="" method="post">
+          <label htmlFor="username">Nazwa użytkownika</label>
           <input name="username" type="text" />
-          <br></br>
-          <label htmlFor="password">hasło</label>
-          <br></br>
+          <p className="error-message">{errorMessage}</p>
+          <label htmlFor="password">Hasło</label>
           <input name="password" type="password" />
-          <br></br>
-          <button
+          <p className="error-message">{errorMessage}</p>
+          <button className="form-button"
             type="button"
             onClick={() => {
               handleLoginButton();
@@ -64,7 +82,7 @@ export default function Login() {
           </button>
 
           <br></br>
-          <Link to="/registration">Stwórz konto</Link>
+          <p className="login-form"> <Link to="/registration"> Nie masz konta? Stwórz konto</Link></p>
         </form>
       </div>
     </>

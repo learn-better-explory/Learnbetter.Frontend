@@ -1,8 +1,18 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useGlobalState } from "./context";
+
 export default function Registration() {
 
+  let [usernameError, setUsernameError] = useState();
+  let [emailError, setEmailError] = useState();
+  let [passwordError, setPasswordError] = useState();
 
-// login: test2
-// password: test
+  const { token } =  useGlobalState();
+
+  if(token != "" && token != "null" && token != null){
+    window.location.href = 'http://localhost:5173/ShowContext';
+ }
 
   const sendDataToAPI = async () => {
     const data = {
@@ -10,6 +20,27 @@ export default function Registration() {
       password: getUsersData('password'),
       email: getUsersData('email'),
     };
+
+
+    if(data.username.includes(" ") || data.username.trim() == ""){
+      setUsernameError("Niepoprawna nazwa!");
+    }else{
+      setUsernameError("");
+    }
+
+    if(!data.email.includes("@") && !data.email.includes(".")){
+      setEmailError("Niepoprawny email!");
+    }else{
+      setEmailError("");
+    }
+
+    if(data.password.trim() == ""){
+      setPasswordError("Hasło nie może być puste!");
+    }else{
+      setPasswordError("");
+    }
+
+
 
     console.log(JSON.stringify(data));
     try {
@@ -46,20 +77,20 @@ export default function Registration() {
   return (
     <>
       <div className="container">
+      <p className="header-text">Rejestracja</p>
         <form action="" method="post">
-          <label htmlFor="email">email</label>
-          <br></br>
-          <input name="email" type="text" />
-          <br></br>
-          <label htmlFor="username">username</label>
-          <br></br>
+          <label htmlFor="username">Nazwa użytkownika</label>
           <input name="username" type="text" />
-          <br></br>
+          <p className="error-message">{usernameError}</p>
+          <label htmlFor="email">Email</label>
+          <input name="email" type="text" />
+          <p className="error-message">{emailError}</p>
           <label htmlFor="password">Hasło</label>
-          <br></br>
           <input name="password" type="password" />
+          <p className="error-message">{passwordError}</p>
         </form>
-        <button type='button' onClick={() => handleSendButton()}>Wyślij</button>        
+        <button className="form-button" type='button' onClick={() => handleSendButton()}>Wyślij</button>     
+        <p className="login-form"> <Link to="/"> Masz konto? Zaloguj się</Link></p>   
       </div>
     </>
   );

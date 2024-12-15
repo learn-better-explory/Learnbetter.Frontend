@@ -1,9 +1,9 @@
 #container{
     width: 400px;
-    height: 100vh;
+    height: 93vh;
     color: black;
-    margin-top: 100px;
-    margin-left: 30%;
+    margin-top: 50px;
+    margin-left: 40%;
 }
 
 .clickElement{
@@ -16,6 +16,7 @@
     padding-top: 30px;
     font-size: large;
     font-weight: bold;
+    user-select: none;
 }
 
 .td{

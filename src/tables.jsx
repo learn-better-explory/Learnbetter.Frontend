@@ -56,7 +56,7 @@ const GetTables = () => {
       <h1>Tabele użytkownika:</h1>
       <ul>
         {tables.map((table) => (
-          <li key={table.id}>{table.name}</li>
+          <li key={table.tableId}>{table.tableName}</li>
         ))}
       </ul>
     </div>

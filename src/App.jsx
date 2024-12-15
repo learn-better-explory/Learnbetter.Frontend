@@ -5,10 +5,11 @@ import Header from "./Header";
 import Registration from "./Registration";
 import LogContextData from "./ShowContext";
 import GetTables from "./tables";
+import GetAllValuesFromTables from "./GetAllTables";
+import AddTable from "./addTable";
 // import { LoginData } from ".context";
 
 export default function App() {
-
   return (
     <div>
       <Header></Header>
@@ -18,6 +19,11 @@ export default function App() {
           <Route path="/registration" element={<Registration />}></Route>
           <Route path="/showContext" element={<LogContextData />}></Route>
           <Route path="/GetTables" element={<GetTables />}></Route>
+          <Route path="/AddTable" element={<AddTable />}></Route>
+          <Route
+            path="/GetAllValuesFromTables"
+            element={<GetAllValuesFromTables />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </div>

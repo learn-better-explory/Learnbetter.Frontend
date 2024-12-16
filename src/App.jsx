@@ -20,10 +20,6 @@ export default function App() {
           <Route path="/showContext" element={<LogContextData />}></Route>
           <Route path="/GetTables" element={<GetTables />}></Route>
           <Route path="/AddTable" element={<AddTable />}></Route>
-          <Route
-            path="/GetAllValuesFromTables"
-            element={<GetAllValuesFromTables />}
-          ></Route>
         </Routes>
       </BrowserRouter>
     </div>

@@ -8,7 +8,7 @@ export default function Login() {
   console.log(token);
 
   if (token != "" && token != "null" && token != null) {
-    window.location.href = "http://localhost:5173/ShowContext";
+    window.location.href = "http://localhost:5173/GetTables";
   }
 
   const handleLoginButton = async () => {
@@ -52,7 +52,7 @@ export default function Login() {
       localStorage.setItem("id", result.id);
     }
 
-    window.location.href = "http://localhost:5173/ShowContext";
+    window.location.href = "http://localhost:5173/GetTables";
   };
 
   function getUsersData(elementName) {

@@ -7,6 +7,7 @@ import LogContextData from "./ShowContext";
 import GetTables from "./tables";
 import GetAllValuesFromTables from "./GetAllTables";
 import AddTable from "./addTable";
+import GoodGame from "./Games/ConnectingDefinitions/fiszki.jsx";
 // import { LoginData } from ".context";
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
           <Route path="/showContext" element={<LogContextData />}></Route>
           <Route path="/GetTables" element={<GetTables />}></Route>
           <Route path="/AddTable" element={<AddTable />}></Route>
+          <Route path="/fiszki/:idCokolwiek" element={<GoodGame />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

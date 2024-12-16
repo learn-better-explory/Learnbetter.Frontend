@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styles from "./TablesStyle.module.css";
 import { useGlobalState } from "./context";
 
 const GetTables = () => {
@@ -38,6 +39,9 @@ const GetTables = () => {
         }
 
         const result = await response.json();
+
+        console.log(result);
+
         setTables(result); // Zapisujemy pobrane tabele w stanie
       } catch (error) {
         setError(`Wystąpił błąd podczas pobierania danych: ${error.message}`);
@@ -52,15 +56,33 @@ const GetTables = () => {
   }
 
   return (
-    <div>
-      <h1>Tabele użytkownika:</h1>
-      <ul>
-        {tables.map((table) => (
-          <li key={table.id}>{table.name}</li>
-        ))}
-      </ul>
+    <div id={styles.mainDiv} className={styles.topCornersRounded}>
+      <div id={styles.header} className={styles.topCornersRounded}>
+        Twoje tabele:
+      </div>
+      {tables.map((table) => (
+        <TableComponent
+          key={table.tableId}
+          tableName={table.tableName}
+          tableDesc={table.tableDescription}
+          definitionsCount={table.definitionsCount}
+        ></TableComponent>
+      ))}
     </div>
   );
 };
+
+function TableComponent(props) {
+  return (
+    <div className={styles.tableContainer}>
+      <p className={styles.tableName}>{props.tableName}</p>
+      <div className={styles.tableDescription}>{props.tableDesc}</div>
+      <div className={styles.definitionsDiv}>
+        <p className={styles.top}>Ilość definicji:</p>
+        <p className={styles.bottom}>{props.definitionsCount}</p>
+      </div>
+    </div>
+  );
+}
 
 export default GetTables;

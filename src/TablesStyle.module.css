@@ -1,0 +1,86 @@
+:root {
+  --div-fill: #f5f5f5;
+  --border-color: #5c5c5c;
+  --table-div-fill: #ededed;
+  --table-desc-fill: #d9d9d9;
+}
+
+.topCornersRounded {
+  border-top-right-radius: 40px;
+  border-top-left-radius: 40px;
+}
+
+#mainDiv {
+  width: 60%;
+  margin-top: 50px;
+  margin-left: 20%;
+  height: 94.5vh;
+  margin-bottom: 0px;
+  background-color: var(--div-fill);
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+#header {
+  width: 100%;
+  height: 100px;
+  font-size: 70px;
+  font-weight: bold;
+  padding-top: 1%;
+  padding-left: 5%;
+  background-color: #dedede;
+  border-bottom: var(--border-color) 2px solid;
+}
+
+.tableContainer {
+  clear: both;
+  width: 100%;
+  height: 227px;
+  background-color: var(--table-div-fill);
+  border-top: 1px var(--border-color) solid;
+  border-bottom: 1px var(--border-color) solid;
+  margin-top: 28px;
+}
+
+.tableName {
+  text-align: center;
+  align-content: center;
+  margin-top: 0%;
+  width: 20%;
+  height: 100%;
+  font-size: 50px;
+  font-weight: bolder;
+  float: left;
+  margin-left: 5%;
+}
+
+.tableDescription {
+  float: left;
+  background-color: var(--table-desc-fill);
+  width: 45%;
+  height: 100%;
+  margin-left: 5%;
+  font-size: 32px;
+  text-align: center;
+  align-content: center;
+}
+
+.definitionsDiv {
+  float: left;
+  width: 25%;
+  height: 100%;
+}
+
+.top {
+  font-size: 35px;
+  font-weight: bolder;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.bottom {
+  width: 100%;
+  font-size: 70px;
+  margin-top: 10px;
+  text-align: center;
+}

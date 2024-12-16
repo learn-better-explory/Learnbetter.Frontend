@@ -1,16 +1,16 @@
-:root{
+:root {
   --button-hover-color: #dadada;
   --button-click-color: #a5a5a5;
 }
 
-
-html{
+html {
   font-family: Arial, Helvetica, sans-serif;
   background-color: rgb(211, 211, 211);
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
-.container{
+.container {
   background-color: rgb(160, 160, 160);
   width: 300px;
   border-radius: 10px;
@@ -21,15 +21,16 @@ html{
   border: 2px black solid;
 }
 
-input{
+input {
   border-radius: 20px;
   background-color: rgb(238, 238, 238);
   border: 2px black solid;
   height: 25px;
   font-size: 15px;
+  text-align: center;
 }
 
-.form-button{
+.form-button {
   border-radius: 10px;
   width: 160px;
   height: 50px;
@@ -41,18 +42,18 @@ input{
   transition: 0.1s;
 }
 
-.form-button:hover{
+.form-button:hover {
   background-color: var(--button-hover-color);
   transform: scale(1.02);
 }
 
-.form-button:active{
+.form-button:active {
   transition: 0s;
   background-color: var(--button-click-color);
   transform: scale(1.05);
 }
 
-.header-text{
+.header-text {
   margin-top: 0px;
   padding-top: 0px;
   text-align: center;
@@ -62,7 +63,7 @@ input{
   border-bottom: 1px rgb(97, 97, 97) solid;
 }
 
-label{ 
+label {
   display: block;
   text-align: center;
   font-size: 25px;
@@ -72,20 +73,20 @@ label{
   margin-top: 20px;
 }
 
-.login-form{
+.login-form {
   width: 100%;
   text-align: center;
   color: rgb(133, 133, 248);
   font-size: 15px;
 }
 
-#background{
-  background-image: url('/src/assets/placeholder.webp');
+#background {
+  background-image: url("/src/assets/placeholder.webp");
   height: 500px;
   width: 100px;
 }
 
-.error-message{
+.error-message {
   margin: 0;
   padding: 0;
   text-align: center;
@@ -93,11 +94,11 @@ label{
   color: rgb(180, 0, 0);
 }
 
-input{
+input {
   margin-left: 50px;
 }
 
-#header{
+#header {
   position: absolute;
   background-color: rgb(70, 70, 70);
   color: white;

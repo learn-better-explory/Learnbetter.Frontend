@@ -63,6 +63,7 @@ const GetTables = () => {
       {tables.map((table) => (
         <TableComponent
           key={table.tableId}
+          tableId={table.tableId}
           tableName={table.tableName}
           tableDesc={table.tableDescription}
           definitionsCount={table.definitionsCount}
@@ -73,8 +74,14 @@ const GetTables = () => {
 };
 
 function TableComponent(props) {
+  let loc = "http://localhost:5173/ShowTable/" + props.tableId;
+  console.log(loc);
+  console.log(props.tableId);
   return (
-    <div className={styles.tableContainer}>
+    <div
+      className={styles.tableContainer}
+      onClick={() => (window.location.href = loc)}
+    >
       <p className={styles.tableName}>{props.tableName}</p>
       <div className={styles.tableDescription}>{props.tableDesc}</div>
       <div className={styles.definitionsDiv}>

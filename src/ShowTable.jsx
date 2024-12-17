@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { data, useParams } from "react-router-dom";
+import { data, Link, useParams } from "react-router-dom";
 import tableStyle from "./TablesStyle.module.css";
 import styles from "./TableShowStyle.module.css";
 import { useGlobalState } from "./context";
@@ -64,7 +64,10 @@ export default function TableMenu() {
           alignContent: "center",
         }}
       >
-        {tableData.tableName}
+        <p style={{ float: "left" }}> {tableData.tableName} </p>
+        <Link to={`/game/${tableId}/connecting`}>
+          <div id={styles.gameButton}></div>
+        </Link>
       </div>
       {wordsData === undefined
         ? ""

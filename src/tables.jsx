@@ -83,6 +83,7 @@ function TableComponent(props) {
       onClick={() => (window.location.href = loc)}
     >
       <p className={styles.tableName}>{props.tableName}</p>
+
       <div className={styles.tableDescription}>{props.tableDesc}</div>
       <div className={styles.definitionsDiv}>
         <p className={styles.top}>Ilość definicji:</p>

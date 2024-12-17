@@ -21,7 +21,7 @@ html {
   border: 2px black solid;
 }
 
-input {
+.form-input {
   border-radius: 20px;
   background-color: rgb(238, 238, 238);
   border: 2px black solid;

@@ -65,10 +65,10 @@ export default function Login() {
         <p className="header-text">Logowanie</p>
         <form action="" method="post">
           <label htmlFor="username">Nazwa użytkownika</label>
-          <input name="username" type="text" />
+          <input className="form-input" name="username" type="text" />
           <p className="error-message">{errorMessage}</p>
           <label htmlFor="password">Hasło</label>
-          <input name="password" type="password" />
+          <input className="form-input" name="password" type="password" />
           <p className="error-message">{errorMessage}</p>
           <button
             className="form-button"

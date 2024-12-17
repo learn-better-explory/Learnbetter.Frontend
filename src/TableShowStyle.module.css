@@ -16,14 +16,28 @@
   clear: both;
 }
 
+#gameButton {
+  float: left;
+  margin-left: 35%;
+  height: 80%;
+  width: 180px;
+  background: 100% 100%;
+  background-size: 100% 100%;
+  background-image: url("assets/table-button.png");
+}
+
+#gameButton:hover {
+  background-image: url("assets/table-button-hover.png");
+}
+
 .words {
   float: left;
   height: 100%;
   align-content: center;
   text-align: center;
-  width: 30%;
+  width: 25%;
   margin-top: 0px;
-  font-size: 48px;
+  font-size: 30px;
   font-weight: bold;
 }
 

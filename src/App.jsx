@@ -32,7 +32,7 @@ export default function App() {
           ></Route>
           <Route path="/GetTables" element={<GetTables />}></Route>
           <Route path="/AddTable" element={<AddTable />}></Route>
-          <Route path="/ShowTable/:tableId" element={<TableMenu />}></Route>
+          <Route path="/fiszki/:idCokolwiek" element={<GoodGame />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

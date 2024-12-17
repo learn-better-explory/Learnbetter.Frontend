@@ -30,6 +30,7 @@ export default function App() {
             path="/game/:tableId/definitionGame"
             element={<DefinitionGame />}
           ></Route>
+          <Route path="/ShowTable/:tableId" element={<ShowTable />}></Route>
           <Route path="/GetTables" element={<GetTables />}></Route>
           <Route path="/AddTable" element={<AddTable />}></Route>
           {/* <Route path="/fiszki/:idCokolwiek" element={<GoodGame />}></Route> */}

@@ -1,16 +1,20 @@
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { data, useParams } from "react-router-dom";
+
 import { useGlobalState } from "../../context";
 
-export default function GoogGame() {
+export function GoodGame() {}
+
+export default function TableMenu() {
   const { idCokolwiek } = useParams();
-  console.log(idCokolwiek);
 
   const { token, id } = useGlobalState();
-  const [result, setResult] = useState([]);
+  const [tableData, setTableData] = useState({});
+  const [wordsData, setWordsData] = useState();
+  if (idCokolwiek === undefined) return;
 
   useEffect(() => {
-    const getDataFromTables = async () => {
+    const getDataFromTable = async () => {
       if (token && token !== "null") {
         try {
           const response = await fetch(
@@ -26,26 +30,20 @@ export default function GoogGame() {
           );
 
           const data = await response.json();
-          setResult(Array.isArray(data) ? data : []); // Sprawdzamy, czy data to tablica
+          setTableData(data); // Ustawiamy dane w stanie
         } catch (error) {
           console.error("Błąd podczas pobierania danych:", error);
         }
       }
     };
 
-    getDataFromTables();
-  }, [token, id, idCokolwiek]); // Dodajemy idCokolwiek do zależności useEffect
+    getDataFromTable();
+    console.log(tableData);
+  }, [token, id]);
 
-  return (
-    <div>
-      <h2>Lista Tabel</h2>
-      <ul>
-        {result.map((table) => (
-          <li key={table.tableId}>
-            <strong>{table.tableName}</strong>: {table.tableDescription}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  if (tableData && tableData.words && wordsData === undefined) {
+    setWordsData(tableData.words);
+  }
+
+  return;
 }

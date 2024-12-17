@@ -8,6 +8,8 @@ import GetTables from "./tables";
 import GetAllValuesFromTables from "./GetAllTables";
 import AddTable from "./addTable";
 import GoodGame from "./Games/ConnectingDefinitions/fiszki.jsx";
+import ShowTable from "./ShowTable";
+import TableMenu from "./ShowTable";
 // import { LoginData } from ".context";
 
 export default function App() {
@@ -22,6 +24,7 @@ export default function App() {
           <Route path="/GetTables" element={<GetTables />}></Route>
           <Route path="/AddTable" element={<AddTable />}></Route>
           <Route path="/fiszki/:idCokolwiek" element={<GoodGame />}></Route>
+          <Route path="/ShowTable/:tableId" element={<TableMenu />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

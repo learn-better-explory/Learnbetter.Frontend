@@ -1,20 +1,60 @@
 import { createElement, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import styles from "./ConnectingDefinitions.module.css";
-import { clone, shuffle } from "../../Utils";
+import { clone, getRandomInt, shuffle } from "../../Utils";
+import { useGlobalState } from "../../context";
 
 export default function ConnectingDefinitions() {
-  const wordData = [
-    {
-      wordId: 0,
-      word: "Dzik",
-      wordDescription: "Dzik jest dziki",
-    },
-    {
-      wordId: 1,
-      word: "Śmierć Piłsudzkiego",
-      wordDescription: "12.05.1935",
-    },
-  ];
+  const { tableId } = useParams();
+
+  const { token, id } = useGlobalState();
+
+  const [allWords, setAllWords] = useState([]);
+  const [usedWords, setUsedWords] = useState([]);
+
+  const [renderNextButton, setRender] = useState(false);
+
+  useEffect(() => {
+    const getDataFromTable = async () => {
+      if (token && token !== "null") {
+        try {
+          const response = await fetch(
+            `http://localhost:8080/api/v1/${id}/${tableId}`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+                Accept: "*/*",
+              },
+            }
+          );
+
+          const data = await response.json();
+          if (data && data.words && allWords.length === 0) {
+            setAllWords(data.words);
+          }
+        } catch (error) {
+          console.error("Błąd podczas pobierania danych:", error);
+        }
+      }
+    };
+    getDataFromTable();
+  }, [token, id]);
+
+  let copyAllWords = clone(allWords);
+  let useWords = [];
+  let iter = copyAllWords.length > 5 ? 5 : copyAllWords.length;
+  console.log(copyAllWords);
+  for (let i = 0; i < iter; i++) {
+    console.log(copyAllWords);
+    let rand = getRandomInt(copyAllWords.length);
+    useWords.push(copyAllWords[rand]);
+    copyAllWords.splice(rand, 1);
+  }
+  if (usedWords.length === 0 && useWords != 0) {
+    setUsedWords(useWords);
+  }
 
   function getWordId(element) {
     return element.attributes.getNamedItem("wordid").nodeValue;
@@ -23,7 +63,7 @@ export default function ConnectingDefinitions() {
   let defButtonsEl;
   let anwserButtonsEl;
   let selectedDefButton;
-  const defaultBackgroundColor = "#F2F2F2";
+  const defaultBackgroundColor = "#F2F2F3";
   const clickedBackgroundColor = "grey";
   const correctBackgroundColor = "#4ef823";
   const incorrectBackgroundColor = "#f72525";
@@ -42,7 +82,7 @@ export default function ConnectingDefinitions() {
       el.style = `background-color: ${defaultBackgroundColor};`;
     });
     anwserButtonsEl.forEach((el) => {
-      el.style = `background-color: ${defaultBackgroundColor};`;
+      el.style = `background-color: ${defaultBackgroundColor}; font-size: 17px;`;
     });
 
     if (selectedDefButton != e.target) {
@@ -59,15 +99,19 @@ export default function ConnectingDefinitions() {
     }
 
     if (getWordId(e.target) == getWordId(selectedDefButton)) {
-      e.target.style = `background-color: ${correctBackgroundColor};`;
+      e.target.style = `background-color: ${correctBackgroundColor}; font-size: 17px;`;
       selectedDefButton.style = `background-color:${correctBackgroundColor};`;
 
       const indexDef = defButtonsEl.indexOf(selectedDefButton);
       const indexAnwser = anwserButtonsEl.indexOf(e.target);
       defButtonsEl.splice(indexDef, 1);
       anwserButtonsEl.splice(indexAnwser, 1);
+
+      if (defButtonsEl.length === 0) {
+        setRender(true);
+      }
     } else {
-      e.target.style = `background-color: ${incorrectBackgroundColor};`;
+      e.target.style = `background-color: ${incorrectBackgroundColor}; font-size: 17px;`;
       selectedDefButton.style = `background-color:${incorrectBackgroundColor};`;
     }
     selectedDefButton = null;
@@ -97,6 +141,7 @@ export default function ConnectingDefinitions() {
           className={styles.clickElement}
           name="answerButton"
           wordid={props.wordid}
+          style={{ fontSize: 17 + "px" }}
           onClick={(e) => {
             handleAnswerButtonClick(e);
           }}
@@ -117,7 +162,7 @@ export default function ConnectingDefinitions() {
   }
 
   function TableBody() {
-    let words = clone(wordData);
+    let words = clone(usedWords);
     let wordDefintions = [];
     let wordAnwsers = [];
 
@@ -130,7 +175,7 @@ export default function ConnectingDefinitions() {
 
       wordAnwsers.push({
         wordId: word.wordId,
-        value: word.wordDescription,
+        value: word.description,
       });
     }
 
@@ -155,6 +200,13 @@ export default function ConnectingDefinitions() {
           <TableBody></TableBody>
         </tbody>
       </table>
+      {renderNextButton ? (
+        <Link to={`/game/${tableId}/definitionGame`}>
+          <button id={styles.nextButton}>Następna gra</button>
+        </Link>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

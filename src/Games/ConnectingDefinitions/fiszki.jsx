@@ -8,6 +8,9 @@ export function GoodGame() {}
 export default function TableMenu() {
   const { idCokolwiek } = useParams();
 
+  const [myWord, setWord] = useState(0);
+  const [toggleWord, setToggleWord] = useState(false);
+
   const { token, id } = useGlobalState();
   const [tableData, setTableData] = useState({});
   const [wordsData, setWordsData] = useState();
@@ -44,6 +47,53 @@ export default function TableMenu() {
   if (tableData && tableData.words && wordsData === undefined) {
     setWordsData(tableData.words);
   }
+  console.log(wordsData);
 
-  return;
+  function ChangeWord() {
+    setWord(myWord + 1);
+  }
+
+  return (
+    <div
+      style={{
+        position: "absolute",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100vw",
+        height: "100vh",
+        zIndex: "-1",
+      }}
+    >
+      <button
+        onClick={() => setToggleWord(!toggleWord)}
+        style={{
+          margin: "20px",
+          borderRadius: "10px",
+          padding: "20px",
+          fontSize: "30px",
+          border: "2px solid",
+          backgroundColor: toggleWord === true ? "#7ef55f" : "#5ea9ff",
+        }}
+      >
+        {wordsData === undefined
+          ? null
+          : toggleWord === true
+          ? wordsData[myWord].word
+          : wordsData[myWord].description}
+      </button>
+      <button
+        style={{
+          margin: "30px",
+          borderRadius: "10px",
+          padding: "10px",
+          fontSize: "20px",
+        }}
+        onClick={() => ChangeWord()}
+      >
+        zmien wyraz
+      </button>
+    </div>
+  );
 }

@@ -93,7 +93,10 @@ export default function Registration() {
         </button>
         <p className="login-form">
           {" "}
-          <Link to="/"> Masz konto? Zaloguj się</Link>
+          <Link to="/" style={{ color: "#022752", fontWeight: "bold" }}>
+            {" "}
+            Masz konto? Zaloguj się
+          </Link>
         </p>
       </div>
     </>

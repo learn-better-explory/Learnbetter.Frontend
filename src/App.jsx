@@ -10,17 +10,16 @@ import AddTable from "./addTable";
 import GoodGame from "./Games/ConnectingDefinitions/fiszki.jsx";
 import ShowTable from "./ShowTable";
 import TableMenu from "./ShowTable";
-import ShowTable from "./ShowTable";
-import TableMenu from "./ShowTable";
 import ConnectingDefinitions from "./Games/ConnectingDefinitions/ConnectingDefinitions";
 import DefinitionGame from "./Games/DefinitionGame/DefinitionGame";
+
 // import { LoginData } from ".context";
 
 export default function App() {
   return (
     <div>
-      <Header></Header>
       <BrowserRouter>
+        <Header></Header>
         <Routes>
           <Route path="/" element={<Login />}></Route>
           <Route path="/registration" element={<Registration />}></Route>

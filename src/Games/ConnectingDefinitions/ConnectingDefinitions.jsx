@@ -65,8 +65,8 @@ export default function ConnectingDefinitions() {
   let selectedDefButton;
   const defaultBackgroundColor = "#F2F2F3";
   const clickedBackgroundColor = "grey";
-  const correctBackgroundColor = "#4ef823";
-  const incorrectBackgroundColor = "#f72525";
+  const correctBackgroundColor = "#7ef55f";
+  const incorrectBackgroundColor = "#f74848";
 
   useEffect(() => {
     defButtonsEl = Array.from(document.getElementsByName("defButton"));

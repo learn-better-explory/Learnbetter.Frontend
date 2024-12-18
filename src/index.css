@@ -2,16 +2,18 @@
   --button-hover-color: #dadada;
   --button-click-color: #a5a5a5;
 }
-
+.form-input:hover {
+  background-color: rgb(255, 255, 255);
+}
 html {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: rgb(211, 211, 211);
+  background-color: rgb(219, 217, 217);
   overflow-x: hidden;
   overflow-y: hidden;
 }
 
 .container {
-  background-color: rgb(160, 160, 160);
+  background-color: rgb(146, 144, 144);
   width: 300px;
   border-radius: 10px;
   margin-left: 40%;
@@ -22,8 +24,8 @@ html {
 }
 
 .form-input {
-  border-radius: 20px;
-  background-color: rgb(238, 238, 238);
+  border-radius: 13px;
+  background-color: rgb(219, 219, 219);
   border: 2px black solid;
   height: 25px;
   font-size: 15px;
@@ -45,6 +47,7 @@ html {
 .form-button:hover {
   background-color: var(--button-hover-color);
   transform: scale(1.02);
+  background-color: rgb(155, 215, 255);
 }
 
 .form-button:active {
@@ -61,6 +64,13 @@ html {
   margin-bottom: 10px;
   font-size: 35px;
   border-bottom: 1px rgb(97, 97, 97) solid;
+}
+
+.headerSpan:hover {
+  color: rgb(128, 183, 255);
+}
+.headerButton:hover {
+  background-color: rgb(128, 183, 255);
 }
 
 label {

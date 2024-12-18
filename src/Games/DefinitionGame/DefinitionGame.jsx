@@ -53,9 +53,9 @@ export default function DefinitionGame() {
     }
 
     if (anwser !== word.word) {
-      input.style = "background-color: #f72525;";
+      input.style = "background-color: #f74848;";
     } else {
-      input.style = "background-color: #4ef823";
+      input.style = "background-color:#7ef55f;";
       setCorrect(true);
     }
   }

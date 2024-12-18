@@ -60,6 +60,7 @@ const GetTables = () => {
       <div id={styles.header} className={styles.topCornersRounded}>
         Twoje tabele:
       </div>
+
       {tables.map((table) => (
         <TableComponent
           key={table.tableId}

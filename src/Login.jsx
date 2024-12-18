@@ -83,7 +83,13 @@ export default function Login() {
           <br></br>
           <p className="login-form">
             {" "}
-            <Link to="/registration"> Nie masz konta? Stwórz konto</Link>
+            <Link
+              style={{ color: "#022752", fontWeight: "bold" }}
+              to="/registration"
+            >
+              {" "}
+              Nie masz konta? Stwórz konto
+            </Link>
           </p>
         </form>
       </div>
